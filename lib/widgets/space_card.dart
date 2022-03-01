@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:hotdoor_apps/models/space.dart';
 
 import '../theme.dart';
 
 class SpaceCard extends StatelessWidget {
+  final Space space;
+  SpaceCard(this.space);
+
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -15,7 +19,7 @@ class SpaceCard extends StatelessWidget {
             child: Stack(
               children: [
                 Image.asset(
-                  'assets/space1.png',
+                  space.imageUrl,
                 ),
                 Align(
                   alignment: Alignment.topRight,
@@ -38,7 +42,7 @@ class SpaceCard extends StatelessWidget {
                           height: 22,
                         ),
                         Text(
-                          '4/5',
+                          '${space.rating}/5',
                           style: whiteTextStyle.copyWith(
                             fontSize: 13,
                           ),
@@ -50,6 +54,46 @@ class SpaceCard extends StatelessWidget {
               ],
             ),
           ),
+        ),
+        SizedBox(
+          width: 20,
+        ),
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              space.name,
+              style: blackTextStyle.copyWith(
+                fontSize: 18,
+              ),
+            ),
+            SizedBox(
+              height: 2,
+            ),
+            Text.rich(
+              TextSpan(
+                text: '\$${space.price}',
+                style: purpleTextStyle.copyWith(
+                  fontSize: 16,
+                ),
+                children: [
+                  TextSpan(
+                    text: ' / month',
+                    style: greyTextStyle.copyWith(
+                      fontSize: 16,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            SizedBox(
+              height: 16,
+            ),
+            Text(
+              '${space.city}, ${space.country}',
+              style: greyTextStyle,
+            ),
+          ],
         ),
       ],
     );
