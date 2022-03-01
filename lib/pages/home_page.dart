@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hotdoor_apps/models/city.dart';
 import 'package:hotdoor_apps/theme.dart';
 import 'package:hotdoor_apps/widgets/city_card.dart';
+import 'package:hotdoor_apps/widgets/space_card.dart';
 
 class HomePage extends StatelessWidget {
   @override
@@ -14,6 +15,7 @@ class HomePage extends StatelessWidget {
           ),
           child: ListView(
             children: [
+              // NOTE: TITLE/HEADER
               Padding(
                 padding: EdgeInsets.only(left: edge),
                 child: Text(
@@ -38,6 +40,7 @@ class HomePage extends StatelessWidget {
               SizedBox(
                 height: 30,
               ),
+              // NOTE: POPULAR CITY
               Padding(
                 padding: EdgeInsets.only(left: edge),
                 child: Text(
@@ -91,6 +94,27 @@ class HomePage extends StatelessWidget {
                     ),
                   ],
                 ),
+              ),
+              SizedBox(
+                height: 30,
+              ),
+              // NOTE: RECOMENDED SPACE
+              Padding(
+                padding: EdgeInsets.only(left: edge),
+                child: Text(
+                  'Recommended Space',
+                  style: regularTextStyle.copyWith(
+                    fontSize: 16,
+                  ),
+                ),
+              ),
+              SizedBox(
+                height: 16,
+              ),
+              Column(
+                children: [
+                  SpaceCard(),
+                ],
               ),
             ],
           ),
