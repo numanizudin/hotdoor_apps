@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hotdoor_apps/models/city.dart';
 import 'package:hotdoor_apps/models/space.dart';
+import 'package:hotdoor_apps/models/tips.dart';
 import 'package:hotdoor_apps/theme.dart';
 import 'package:hotdoor_apps/widgets/city_card.dart';
 import 'package:hotdoor_apps/widgets/space_card.dart';
@@ -184,11 +185,25 @@ class HomePage extends StatelessWidget {
                 ),
                 child: Column(
                   children: [
-                    TipsCard(),
+                    TipsCard(
+                      Tips(
+                        id: 1,
+                        title: 'City Guidelines',
+                        imageUrl: 'assets/tips1.png',
+                        updatedAt: '20 Apr',
+                      ),
+                    ),
                     SizedBox(
                       height: 20,
                     ),
-                    TipsCard(),
+                    TipsCard(
+                      Tips(
+                        id: 2,
+                        title: 'Jakarta Fairship',
+                        imageUrl: 'assets/tips2.png',
+                        updatedAt: '11 Dec',
+                      ),
+                    ),
                   ],
                 ),
               ),
