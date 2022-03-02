@@ -3,6 +3,7 @@ import 'package:hotdoor_apps/models/space.dart';
 import 'package:hotdoor_apps/pages/error_page.dart';
 import 'package:hotdoor_apps/theme.dart';
 import 'package:hotdoor_apps/widgets/facility_item.dart';
+import 'package:hotdoor_apps/widgets/rating_item.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class DetailPage extends StatelessWidget {
@@ -96,41 +97,17 @@ class DetailPage extends StatelessWidget {
                               ],
                             ),
                             Row(
-                              children: [
-                                Image.asset(
-                                  'assets/icon_star.png',
-                                  width: 20,
-                                ),
-                                SizedBox(
-                                  width: 2,
-                                ),
-                                Image.asset(
-                                  'assets/icon_star.png',
-                                  width: 20,
-                                ),
-                                SizedBox(
-                                  width: 2,
-                                ),
-                                Image.asset(
-                                  'assets/icon_star.png',
-                                  width: 20,
-                                ),
-                                SizedBox(
-                                  width: 2,
-                                ),
-                                Image.asset(
-                                  'assets/icon_star.png',
-                                  width: 20,
-                                ),
-                                SizedBox(
-                                  width: 2,
-                                ),
-                                Image.asset(
-                                  'assets/icon_star.png',
-                                  width: 20,
-                                  color: Color(0xff989BA1),
-                                ),
-                              ],
+                              children: [1, 2, 3, 4, 5].map((index) {
+                                return Container(
+                                  margin: EdgeInsets.only(
+                                    left: 2,
+                                  ),
+                                  child: RatingItem(
+                                    index: index,
+                                    rating: space.rating,
+                                  ),
+                                );
+                              }).toList(),
                             ),
                           ],
                         ),
