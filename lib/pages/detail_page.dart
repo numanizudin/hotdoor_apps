@@ -1,10 +1,26 @@
 import 'package:flutter/material.dart';
+import 'package:hotdoor_apps/pages/error_page.dart';
 import 'package:hotdoor_apps/theme.dart';
 import 'package:hotdoor_apps/widgets/facility_item.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class DetailPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    launchUrl(String url) async {
+      if (await canLaunch(url)) {
+        launch(url);
+      } else {
+        // throw (url);
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (Context) => ErrorPage(),
+          ),
+        );
+      }
+    }
+
     return Scaffold(
       backgroundColor: whiteColor,
       body: SafeArea(
@@ -236,9 +252,16 @@ class DetailPage extends StatelessWidget {
                               'Jln. Pangeran Sugih No. 4\n Sumedang',
                               style: greyTextStyle,
                             ),
-                            Image.asset(
-                              'assets/btn_map.png',
-                              width: 40,
+                            InkWell(
+                              onTap: () {
+                                // launchUrl(
+                                //     'https://goo.gl/maps/ueypwW2c6DjwH37h8');
+                                launchUrl('sadasdas');
+                              },
+                              child: Image.asset(
+                                'assets/btn_map.png',
+                                width: 40,
+                              ),
                             ),
                           ],
                         ),
@@ -253,7 +276,9 @@ class DetailPage extends StatelessWidget {
                         height: 50,
                         width: MediaQuery.of(context).size.width - (2 * edge),
                         child: RaisedButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            launchUrl('tel:+6282217331735');
+                          },
                           color: purpleColor,
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(17),
