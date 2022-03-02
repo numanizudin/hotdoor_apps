@@ -4,6 +4,7 @@ import 'package:hotdoor_apps/models/space.dart';
 import 'package:hotdoor_apps/theme.dart';
 import 'package:hotdoor_apps/widgets/city_card.dart';
 import 'package:hotdoor_apps/widgets/space_card.dart';
+import 'package:hotdoor_apps/widgets/tips_card.dart';
 
 class HomePage extends StatelessWidget {
   @override
@@ -158,6 +159,36 @@ class HomePage extends StatelessWidget {
                         rating: 3,
                       ),
                     ),
+                  ],
+                ),
+              ),
+              SizedBox(
+                height: 30,
+              ),
+              // NOTE: TIPS & GUIDE
+              Padding(
+                padding: EdgeInsets.only(left: edge),
+                child: Text(
+                  'Tips & Guidance',
+                  style: regularTextStyle.copyWith(
+                    fontSize: 16,
+                  ),
+                ),
+              ),
+              SizedBox(
+                height: 16,
+              ),
+              Padding(
+                padding: EdgeInsets.symmetric(
+                  horizontal: edge,
+                ),
+                child: Column(
+                  children: [
+                    TipsCard(),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    TipsCard(),
                   ],
                 ),
               ),
