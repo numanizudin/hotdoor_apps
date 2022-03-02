@@ -2,15 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:hotdoor_apps/models/city.dart';
 import 'package:hotdoor_apps/models/space.dart';
 import 'package:hotdoor_apps/models/tips.dart';
+import 'package:hotdoor_apps/providers/space_provider.dart';
 import 'package:hotdoor_apps/theme.dart';
 import 'package:hotdoor_apps/widgets/bottom_navbar_item.dart';
 import 'package:hotdoor_apps/widgets/city_card.dart';
 import 'package:hotdoor_apps/widgets/space_card.dart';
 import 'package:hotdoor_apps/widgets/tips_card.dart';
+import 'package:provider/provider.dart';
 
 class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    var spaceProvider = Provider.of<SpaceProvider>(context);
+
     return Scaffold(
       backgroundColor: whiteColor,
       body: SafeArea(
@@ -120,48 +124,31 @@ class HomePage extends StatelessWidget {
               padding: EdgeInsets.symmetric(
                 horizontal: edge,
               ),
-              child: Column(
-                children: [
-                  SpaceCard(
-                    Space(
-                      id: 1,
-                      name: 'Kuretakeso Hott',
-                      price: 52,
-                      imageUrl: 'assets/space1.png',
-                      city: 'Bandung',
-                      country: 'Indonesia',
-                      rating: 4,
-                    ),
-                  ),
-                  SizedBox(
-                    height: 30,
-                  ),
-                  SpaceCard(
-                    Space(
-                      id: 2,
-                      name: 'Roemah Nenek',
-                      price: 11,
-                      imageUrl: 'assets/space2.png',
-                      city: 'Bogor',
-                      country: 'Indonesia',
-                      rating: 5,
-                    ),
-                  ),
-                  SizedBox(
-                    height: 30,
-                  ),
-                  SpaceCard(
-                    Space(
-                      id: 3,
-                      name: 'Darrling How',
-                      price: 20,
-                      imageUrl: 'assets/space3.png',
-                      city: 'Jakarta',
-                      country: 'Indonesia',
-                      rating: 3,
-                    ),
-                  ),
-                ],
+              child: FutureBuilder(
+                future: spaceProvider.getRecommendedSpaces(),
+                builder: (context, snapshot) {
+                  if (snapshot.hasData) {
+                    List<Space> data = snapshot.data;
+
+                    int index = 0;
+
+                    return Column(
+                      children: data.map((item) {
+                        index++;
+                        return Container(
+                          margin: EdgeInsets.only(
+                            top: index == 1 ? 0 : 30,
+                          ),
+                          child: SpaceCard(item),
+                        );
+                      }).toList(),
+                    );
+                  }
+
+                  return Center(
+                    child: CircularProgressIndicator(),
+                  );
+                },
               ),
             ),
             SizedBox(
